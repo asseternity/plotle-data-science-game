@@ -50,4 +50,5 @@ class TeamReportCard():
         print("TEAM:", self.name)
         for player in self.roster:
             print(player.string())
+        print("Total KDA:", f"{self.total_kills()}-{self.total_deaths()}-{self.total_assists()}")
         

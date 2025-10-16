@@ -29,7 +29,7 @@
 # - 5 stats per player
 
 # 1) Do the backend first
-# [_] make one team's total deaths equal total kills of the opposition
+# [v] make one team's total deaths equal total kills of the opposition
 # [_] a console game to spot cheaters: with time and accuracy based score
 # [_] now full console version like above description 
 
