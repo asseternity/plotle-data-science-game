@@ -2,21 +2,19 @@ import random
 import enum
 
 class Role(enum.Enum):
-    MARKSMAN = "marksman"
-    WARRIOR = "warrior"
-    SUPPORT = "support"
-    MAGE = "mage"
-    ASSASSIN = "assassin"
+    MARKSMAN = "Marksman"
+    WARRIOR = "Warrior"
+    SUPPORT = "Support"
+    MAGE = "Mage"
+    ASSASSIN = "Assassin"
 
 class PlayerReportCard:
     version = 1
 
-    def __init__(self, username, role):
-        if not isinstance(role, Role):
-            raise ValueError(f"role must be one of {[[r.value for r in Role]]}")
-
+    def __init__(self, username, role: Role):
         self.username = username
         self.role = role
+        self.cheater = False
         self.kills = 0
         self.assists = 0
         self.deaths = 0
@@ -44,4 +42,9 @@ class PlayerReportCard:
                 self.assists = random.randint(0, 10)
 
     def string(self):
-        return f"{self.username} | KDA: {self.kills}-{self.deaths}-{self.assists}"
+        return f"{self.username} | {self.role.value} | KDA: {self.kills}-{self.deaths}-{self.assists}"
+    
+    def make_cheater(self):
+        self.kills = self.kills + round(self.kills / 2)
+        self.assists = self.assists + round(self.kills / 2)
+        self.cheater = True
