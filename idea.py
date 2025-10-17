@@ -30,6 +30,12 @@
 
 # 1) Do the backend first
 # [v] make one team's total deaths equal total kills of the opposition
+# [v] add game elements that are chance/timing based --- something has a chance to happen once per in game minute
+# at first: just runes spawning and neutral monsters being killed
+# add to the player's stats 
+# [v] incorporate runes and neutrals into how the game determines player stats and, therefore, the winners!
+# [_] add cheaters
+# [_] create a game mechanics / chances print with lore and explanations
 # [_] a console game to spot cheaters: with time and accuracy based score
 # [_] now full console version like above description 
 
