@@ -3,7 +3,7 @@ import json
 
 consonants = 'bcdfghjklmnpqrstvwxyz'
 vowels = 'aeiouy'
-with open('username_decorations.json') as f:
+with open('data/username_decorations.json') as f:
     data = json.load(f)
 
 def generate_username():

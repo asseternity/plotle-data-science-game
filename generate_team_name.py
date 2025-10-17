@@ -1,6 +1,6 @@
 import random
 import json
-with open('team_names.json') as f:
+with open('data/team_names.json') as f:
     data = json.load(f)
 
 def generate_team_name():

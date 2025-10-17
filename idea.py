@@ -37,22 +37,31 @@
 # [v] add cheaters
 
 # 2) PIVOT: make it an actual game: esports manager
-# [_] have player objects where their skills affect the outcome
+# [v] have player objects where their skills affect the outcome
+# [_] create manager / between matches UI
 # [_] player generators
 # [_] recruitment systems
-# [_] find cheaters among opposition based on data
+# [_] switch players between roles
 # [_] incorporate pandas: generate a DF from the match report and interactive / changeable visualizations 
 # [numbers / players / type of graph]
+# !!! Pandas layer – THE “ENGINE under the hood for the interactive portion. Each match can export a .csv or .pkl for reproducibility.
+# [_] create post-match cheaters finding UI: 
+# [LEFT]  Expected probabilities / baselines  
+# [CENTER]  Interactive plot (generated with Pandas/Matplotlib/Plotly)  
+# [RIGHT]  Player data / filters / suspected cheaters
+# [_] find cheaters among opposition based on data for rewards and penalties on timing and accuracy
 
-# 3) POLISH
-# [_] expand 
+# 3) EXPAND and POLISH
+# [_] add heroes and show specific heroes on the match report and hero descriptions on the game lore and mechanics info cards
+# [_] more timing and chance based mechanics for ultimate data science
 # [_] create a game mechanics / chances print with lore and explanations
 # [_] tweak cheating numbers
-# [_] a console game to spot cheaters: with time and accuracy based score
-# [_] now full console version like above description 
+# [_] Cheater realism – Instead of just scaling kills/assists, occasionally break correlations 
+# (e.g., high kills but no runes taken, or extreme KDA inconsistency with team averages). That makes detection more subtle
+# [_] Data storytelling – Add post-match “press report” text generated from outliers 
+# (“Fans are questioning how ylari_x secured 47 kills with only 2 rune pickups…”).
 
-# 4) Local frontend
-# 5) Host
-# 6) DB [or have local savegame files instead of a DB]
-# 7) Maybe even add a pygame dots fighting!
-# 8) So the game will have two windows -> data science recruitment / cheating highlighting & match window
+# 4) Host
+# 5) Local savegame files
+# 6) Pygame dots fighting
+# 7) So the game will have two windows -> data science recruitment / cheating highlighting & match window
