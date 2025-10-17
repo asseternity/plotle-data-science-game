@@ -41,7 +41,8 @@
 
 # 2) PIVOT: make it an actual game: esports manager
 # [v] have player objects where their skills affect the outcome
-# [_] IGL: gives +% or -% to other players' performances (not themselves) based on leadership stat | can be assigned and changed in Team class
+# [v] IGL: gives +% or -% to other players' performances (not themselves) based on leadership stat | can be assigned and changed in Team class
+# [_] create a system that will run 100 simulations and give me W-L to tell me balance
 # [_] create manager / between matches UI
 # [_] player generators
 # [_] recruitment systems

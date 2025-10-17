@@ -7,5 +7,8 @@ class Player:
         self.current_role = current_role
         self.attack = attack
         self.defense = defense
+        self.leadership = 0
+
+        self.team = None
         self.latest_match = None
         self.match_history = []
