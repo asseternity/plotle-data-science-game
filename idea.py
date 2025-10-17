@@ -4,6 +4,7 @@
 # - daily/weekly 
 # - uses Pandas / data science
 
+
 # Idea: 
 # A fake videogame esports tournament just happened
 # On the left, you see probabilities of events happening from the game code
@@ -27,6 +28,8 @@
 # - 2 teams
 # - 2 possible roles
 # - 5 stats per player
+
+# !!! UPDATED: half data mystery, half management sim !!!
 
 # 1) Do the backend first
 # [v] make one team's total deaths equal total kills of the opposition
