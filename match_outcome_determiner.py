@@ -40,8 +40,9 @@ class Match():
             else:
                 team1_player_index += 1
             if team1_deaths_too_many > 0:
-                self.team1report.player_stats[team1_player_index].deaths -= 1
-                team1_deaths_too_many -= 1
+                if self.team1report.player_stats[team1_player_index].deaths > 0:
+                    self.team1report.player_stats[team1_player_index].deaths -= 1
+                    team1_deaths_too_many -= 1
             elif team1_deaths_too_many < 0:
                 self.team1report.player_stats[team1_player_index].deaths += 1
                 team1_deaths_too_many += 1
@@ -55,8 +56,9 @@ class Match():
             else:
                 team2_player_index += 1
             if team2_deaths_too_many > 0:
-                self.team2report.player_stats[team2_player_index].deaths -= 1
-                team2_deaths_too_many -= 1
+                if self.team2report.player_stats[team2_player_index].deaths > 0:
+                    self.team2report.player_stats[team2_player_index].deaths -= 1
+                    team2_deaths_too_many -= 1
             elif team2_deaths_too_many < 0:
                 self.team2report.player_stats[team2_player_index].deaths += 1
                 team2_deaths_too_many += 1
@@ -91,9 +93,10 @@ class Match():
             chance = random.randint(0, 1)
             if chance == 1:
                 change = random.randint(1, 5)
-                initial_split[i] = initial_split[i] - change
-                other_player_index = random.randint(0, len(initial_split) - 1)
-                initial_split[other_player_index] = initial_split[other_player_index] + change
+                if initial_split[i] > change:
+                    initial_split[i] = initial_split[i] - change
+                    other_player_index = random.randint(0, len(initial_split) - 1)
+                    initial_split[other_player_index] = initial_split[other_player_index] + change
         initial_split.sort(reverse=True)
         all_players.sort(key=lambda p: p.kda(), reverse=True)
         for i in range(len(all_players)):
@@ -109,9 +112,10 @@ class Match():
             chance = random.randint(0, 1)
             if chance == 1:
                 change = random.randint(1, 5)
-                initial_split[i] = initial_split[i] - change
-                other_player_index = random.randint(0, len(initial_split) - 1)
-                initial_split[other_player_index] = initial_split[other_player_index] + change
+                if initial_split[i] > change:
+                    initial_split[i] = initial_split[i] - change
+                    other_player_index = random.randint(0, len(initial_split) - 1)
+                    initial_split[other_player_index] = initial_split[other_player_index] + change
         initial_split.sort(reverse=True)
         for i in range(len(all_players)):
             all_players[i].neutrals_killed = round(total_neutrals_killed * (initial_split[i] / 100))

@@ -41,6 +41,7 @@
 
 # 2) PIVOT: make it an actual game: esports manager
 # [v] have player objects where their skills affect the outcome
+# [_] IGL: gives +% or -% to other players' performances (not themselves) based on leadership stat | can be assigned and changed in Team class
 # [_] create manager / between matches UI
 # [_] player generators
 # [_] recruitment systems

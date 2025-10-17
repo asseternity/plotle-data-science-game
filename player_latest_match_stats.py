@@ -15,25 +15,26 @@ class PlayerLatestMatchStats:
 
         match self.role:
             case Role.MARKSMAN:
-                self.kills = random.randint(0, 25 + self.player.attack)
-                self.deaths = random.randint(0, 20 - self.player.defense)
-                self.assists = random.randint(0, 15 + self.player.attack)
-            case Role.WARRIOR:                
-                self.kills = random.randint(0, 15 + self.player.attack)
-                self.deaths = random.randint(0, 15 - self.player.defense)
-                self.assists = random.randint(0, 25 + self.player.attack)
-            case Role.SUPPORT:                
-                self.kills = random.randint(0, 10 + self.player.attack)
-                self.deaths = random.randint(0, 25 - self.player.defense)
-                self.assists = random.randint(0, 20 + self.player.attack)
-            case Role.MAGE:                
-                self.kills = random.randint(0, 20 + self.player.attack)
-                self.deaths = random.randint(0, 20 - self.player.defense)
-                self.assists = random.randint(0, 25 + self.player.attack)
-            case Role.ASSASSIN:                
-                self.kills = random.randint(0, 25 + self.player.attack)
-                self.deaths = random.randint(0, 25 - self.player.defense)
-                self.assists = random.randint(0, 10 + self.player.attack)
+                self.kills = max(0, random.randint(0, 25 + self.player.attack))
+                self.deaths = max(0, random.randint(0, 20 - self.player.defense))
+                self.assists = max(0, random.randint(0, 15 + self.player.attack))
+            case Role.WARRIOR:
+                self.kills = max(0, random.randint(0, 15 + self.player.attack))
+                self.deaths = max(0, random.randint(0, 15 - self.player.defense))
+                self.assists = max(0, random.randint(0, 25 + self.player.attack))
+            case Role.SUPPORT:
+                self.kills = max(0, random.randint(0, 10 + self.player.attack))
+                self.deaths = max(0, random.randint(0, 25 - self.player.defense))
+                self.assists = max(0, random.randint(0, 20 + self.player.attack))
+            case Role.MAGE:
+                self.kills = max(0, random.randint(0, 20 + self.player.attack))
+                self.deaths = max(0, random.randint(0, 20 - self.player.defense))
+                self.assists = max(0, random.randint(0, 25 + self.player.attack))
+            case Role.ASSASSIN:
+                self.kills = max(0, random.randint(0, 25 + self.player.attack))
+                self.deaths = max(0, random.randint(0, 25 - self.player.defense))
+                self.assists = max(0, random.randint(0, 10 + self.player.attack))
+
 
     def string(self):
         return f"{self.player.username} | {self.role.value} | KDA: {self.kills}-{self.deaths}-{self.assists} | Runes taken: {self.runes_taken} | Neutrals killed: {self.neutrals_killed}"
