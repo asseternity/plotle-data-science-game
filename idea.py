@@ -34,12 +34,25 @@
 # at first: just runes spawning and neutral monsters being killed
 # add to the player's stats 
 # [v] incorporate runes and neutrals into how the game determines player stats and, therefore, the winners!
-# [_] add cheaters
+# [v] add cheaters
+
+# 2) PIVOT: make it an actual game: esports manager
+# [_] have player objects where their skills affect the outcome
+# [_] player generators
+# [_] recruitment systems
+# [_] find cheaters among opposition based on data
+# [_] incorporate pandas: generate a DF from the match report and interactive / changeable visualizations 
+# [numbers / players / type of graph]
+
+# 3) POLISH
+# [_] expand 
 # [_] create a game mechanics / chances print with lore and explanations
+# [_] tweak cheating numbers
 # [_] a console game to spot cheaters: with time and accuracy based score
 # [_] now full console version like above description 
 
-# 2) Then do the frontend locally
-# 3) Then punch up the frontend
-# 4) Then host
-# 5) Then DB
+# 4) Local frontend
+# 5) Host
+# 6) DB [or have local savegame files instead of a DB]
+# 7) Maybe even add a pygame dots fighting!
+# 8) So the game will have two windows -> data science recruitment / cheating highlighting & match window
