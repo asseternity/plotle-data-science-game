@@ -42,13 +42,14 @@
 # 2) PIVOT: make it an actual game: esports manager
 # [v] have player objects where their skills affect the outcome
 # [v] IGL: gives +% or -% to other players' performances (not themselves) based on leadership stat | can be assigned and changed in Team class
+# [v] incorporate pandas: generate a DF from the match report 
+# [_] expand static data sciences
+# [_] interactive / changeable visualizations (tweak numbers / players / type of graph)
 # [_] create a system that will run 100 simulations and give me W-L to tell me balance
 # [_] create manager / between matches UI
 # [_] player generators
 # [_] recruitment systems
 # [_] switch players between roles
-# [_] incorporate pandas: generate a DF from the match report and interactive / changeable visualizations 
-# [numbers / players / type of graph]
 # !!! Pandas layer – THE “ENGINE under the hood for the interactive portion. Each match can export a .csv or .pkl for reproducibility.
 # [_] create post-match cheaters finding UI: 
 # [LEFT]  Expected probabilities / baselines  
