@@ -74,3 +74,5 @@
 
 # 5) Local savegame files
 # 6) Third window - dots fighting match simulation
+# 7) Plotle mode - just detect cheaters based on a randomly generated match timing-wise. 
+# - Three difficulties - cheating numbers adjusted - total time / errors / accuracy counted for high score
