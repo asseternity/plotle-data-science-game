@@ -119,10 +119,3 @@ class Match():
         initial_split.sort(reverse=True)
         for i in range(len(all_players)):
             all_players[i].neutrals_killed = round(total_neutrals_killed * (initial_split[i] / 100))
-
-        # make cheaters
-
-    def print_report(self):
-        print(f"Winner: {self.winner.name} | Duration: {self.duration_in_minutes} mins")
-        self.team1report.print_report()
-        self.team2report.print_report()

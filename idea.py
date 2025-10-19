@@ -43,19 +43,15 @@
 # [v] have player objects where their skills affect the outcome
 # [v] IGL: gives +% or -% to other players' performances (not themselves) based on leadership stat | can be assigned and changed in Team class
 # [v] incorporate pandas: generate a DF from the match report 
+# [v] create a system that will run 100 simulations and give me W-L to tell me balance
+# [v] separate engine from console logs
+# [v] player generator (for recruitment)
+# [_] create a gameplay loop (console-based) 
+# - separate engine with console logs!!!
+# - management gameplay, recruitment, switching players between roles, subs, igl appoint
+# - cheater spotting with high score and timing / data science gameplay | based on data for rewards and penalties on timing and accuracy
 # [_] expand static data sciences
-# [_] interactive / changeable visualizations (tweak numbers / players / type of graph)
-# [_] create a system that will run 100 simulations and give me W-L to tell me balance
-# [_] create manager / between matches UI
-# [_] player generators
-# [_] recruitment systems
-# [_] switch players between roles
-# !!! Pandas layer – THE “ENGINE under the hood for the interactive portion. Each match can export a .csv or .pkl for reproducibility.
-# [_] create post-match cheaters finding UI: 
-# [LEFT]  Expected probabilities / baselines  
-# [CENTER]  Interactive plot (generated with Pandas/Matplotlib/Plotly)  
-# [RIGHT]  Player data / filters / suspected cheaters
-# [_] find cheaters among opposition based on data for rewards and penalties on timing and accuracy
+# - Pandas layer – THE “ENGINE under the hood for the interactive portion. Each match can export a .csv or .pkl for reproducibility.
 
 # 3) EXPAND and POLISH
 # [_] add heroes and show specific heroes on the match report and hero descriptions on the game lore and mechanics info cards
@@ -63,11 +59,18 @@
 # [_] create a game mechanics / chances print with lore and explanations
 # [_] tweak cheating numbers
 # [_] Cheater realism – Instead of just scaling kills/assists, occasionally break correlations 
-# (e.g., high kills but no runes taken, or extreme KDA inconsistency with team averages). That makes detection more subtle
+# - e.g., high kills but no runes taken, or extreme KDA inconsistency with team averages
+# - that makes detection more subtle
 # [_] Data storytelling – Add post-match “press report” text generated from outliers 
-# (“Fans are questioning how ylari_x secured 47 kills with only 2 rune pickups…”).
+# - “Fans are questioning how ylari_x secured 47 kills with only 2 rune pickups…”
 
-# 4) Host
+# 4) REACT FRONTEND
+# [_] make repo
+# [_] create manager / between matches UI
+# [_] create post-match cheaters finding UI: 
+# [LEFT]  Expected probabilities / baselines  
+# [CENTER]  interactive / changeable visualizations (tweak numbers / players / type of graph)  
+# [RIGHT]  Player data / filters / suspected cheaters
+
 # 5) Local savegame files
-# 6) Pygame dots fighting
-# 7) So the game will have two windows -> data science recruitment / cheating highlighting & match window
+# 6) Third window - dots fighting match simulation

@@ -42,9 +42,6 @@ class PlayerLatestMatchStats:
                 self.deaths = max(0, random.randint(0, 25 - self.player.defense - self.igl_modifier))
                 self.assists = max(0, random.randint(0, 10 + self.player.attack + self.igl_modifier))
 
-    def string(self):
-        return f"{self.player.username} | {self.role.value} | KDA: {self.kills}-{self.deaths}-{self.assists} | Runes taken: {self.runes_taken} | Neutrals killed: {self.neutrals_killed}"
-    
     def kda(self):
         return self.kills + self.assists - self.deaths
     

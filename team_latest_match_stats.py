@@ -42,10 +42,3 @@ class TeamLatestMatchStats():
         for player in self.player_stats:
             total_deaths += player.deaths
         return total_deaths
-
-    def print_report(self):
-        print("---------------------")
-        print("TEAM:", self.team.name)
-        for player in self.player_stats:
-            print(player.string())
-        print("Total KDA:", f"{self.total_kills()}-{self.total_deaths()}-{self.total_assists()}")

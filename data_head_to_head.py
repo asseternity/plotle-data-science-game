@@ -48,7 +48,7 @@ def head_to_head_stats(team1: Team, team2: Team):
     })
 
     df_player_stats = pd.DataFrame(columns=[
-        "Username", "Team",
+        "Username", "Real Name", "Team",
         "Total Kills", "Total Deaths", "Total Assists",
         "Average Kills", "Average Deaths", "Average Assists"
     ])
@@ -56,10 +56,12 @@ def head_to_head_stats(team1: Team, team2: Team):
     for prs in df_matches["Team1 PlayerReports"] + df_matches["Team2 PlayerReports"]:
         for pr in prs:
             username = pr.player.username
+            real_name = pr.player.real_name
             team_name = pr.player.team.name
             if username not in df_player_stats["Username"].values:
                 df_player_stats.loc[len(df_player_stats)] = {
                     "Username": username,
+                    "Real Name": real_name,
                     "Team": team_name,
                     "Total Kills": pr.kills,
                     "Total Deaths": pr.deaths,
