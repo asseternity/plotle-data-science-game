@@ -4,7 +4,6 @@
 # - daily/weekly 
 # - uses Pandas / data science
 
-
 # Idea: 
 # A fake videogame esports tournament just happened
 # On the left, you see probabilities of events happening from the game code
@@ -46,10 +45,10 @@
 # [v] create a system that will run 100 simulations and give me W-L to tell me balance
 # [v] separate engine from console logs
 # [v] player generator (for recruitment)
-# [_] create a gameplay loop (console-based) 
+# [v] create a gameplay loop (console-based) 
 # - separate engine with console logs!!!
 # - management gameplay, recruitment, switching players between roles, subs, igl appoint
-# - cheater spotting with high score and timing / data science gameplay | based on data for rewards and penalties on timing and accuracy
+# [_] cheater spotting with high score and timing / data science gameplay | based on data for rewards and penalties on timing and accuracy
 # [_] expand static data sciences
 # - Pandas layer – THE “ENGINE under the hood for the interactive portion. Each match can export a .csv or .pkl for reproducibility.
 
@@ -57,6 +56,9 @@
 # [_] add heroes and show specific heroes on the match report and hero descriptions on the game lore and mechanics info cards
 # [_] more timing and chance based mechanics for ultimate data science
 # [_] create a game mechanics / chances print with lore and explanations
+# [_] add league standings
+# [_] add skill growth
+# [_] add pick and ban heroes
 # [_] tweak cheating numbers
 # [_] Cheater realism – Instead of just scaling kills/assists, occasionally break correlations 
 # - e.g., high kills but no runes taken, or extreme KDA inconsistency with team averages

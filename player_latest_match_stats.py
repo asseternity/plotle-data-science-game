@@ -4,6 +4,9 @@ from player import Player
 
 class PlayerLatestMatchStats:
     def __init__(self, player: Player):
+        if player.current_role == None:
+            return
+
         self.player = player
         self.role = self.player.current_role
         self.cheated = False

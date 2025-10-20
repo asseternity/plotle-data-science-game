@@ -9,6 +9,9 @@ class Team():
         for player in self.roster:
             player.team = self
 
+    def get_igl(self):
+        return self.igl.username if self.igl else "Unassigned"
+
     def appoint_igl(self, player):
         if player in player.roster:
             self.igl = player
