@@ -1,15 +1,13 @@
 from generate_player import generate_player
 from generate_team import generate_team
 from match_outcome_determiner import Match
+from league import League
 from role import Role
 from team import Team
 
 class ConsoleGameFlow():
     def __init__(self):
-        self.teams = []
-        self.players_team = None
-
-        # Game Start
+        # Create player's team
         print("You started a new esports organization, centered around a popular MOBA game, Teamfight.")
         print("What is the name of your team?")
         user_input_team_name = input("Please input team name: ")
@@ -31,12 +29,25 @@ class ConsoleGameFlow():
         for player in starting_team_roster:
             print(f"{player.username}")
 
-        players_team = Team(user_input_team_name, *starting_team_roster)
-        self.main_menu(players_team)
+        self.players_team = Team(user_input_team_name, *starting_team_roster)
+        
 
-    def main_menu(self, team):
+        # League creation        
+        teams = []
+        for i in range (7):
+            team = generate_team()
+            teams.append(team)
+        teams.append(self.players_team)
+
+        self.league = League("Teamfight Pro League", teams)
+
+        # Start game
+        self.main_menu()
+
+    def main_menu(self):
+        team = self.players_team
         print("------- MAIN MENU --------")
-        self.print_roster(team)
+        self.print_roster(self.players_team)
         print("--------------------------")
 
         # Check if all player roles are filled
@@ -51,18 +62,21 @@ class ConsoleGameFlow():
         if not hasattr(team, "igl") or team.igl is None:
             print("⚠️ Warning: No IGL assigned.\n")
 
-        # Display next opponent (placeholder for now)
-        next_opponent = generate_team()
-        print(f"Next opponent: 🆚 {next_opponent.name}\n")
+        # Display league info
+        self.league.determine_next_pairs()
+        # [_] handle league being over later
+        self.league.update_league_positions()
+        print("-------------")
+        for i, team in enumerate(self.league.teams, start=1):
+            print(f"{i}. {team.name} | {team.season_wins} - {team.season_losses}")
 
-        # 4️⃣ List of possible actions
-        print("Available actions:")
-        print("1. Change player roles")
-        print("2. Appoint IGL")
-        print("3. Proceed to next match")
+        next_opponent = self.players_team.next_opponent.name
+        print(f"Next opponent: 🆚 {next_opponent}\n")
 
         while True:
             try:
+                # List of possible actions
+                self.print_main_menu_actions()
                 choice = int(input("Enter command number: "))
                 if choice == 1:
                     self.handle_change_roles(team)
@@ -76,8 +90,9 @@ class ConsoleGameFlow():
                         for p in unassigned_players:
                             print(f" - {p.username} has no role assigned.")
                         continue  # Go back to menu loop
-                    print(f"\n🏁 Starting match against {next_opponent.name}...\n")
-                    self.on_match_start(team, next_opponent)
+                    print(f"\n🏁 Starting match against {next_opponent}...\n")
+                    self.league.run_matches()
+                    self.on_match_start()
                     break
                 else:
                     print("Invalid choice. Please enter 1–3.")
@@ -149,14 +164,20 @@ class ConsoleGameFlow():
             print("❌ Please enter valid numbers for player and role.")
         return team
 
-    def on_match_start(self, team1, team2):
-        match = Match(team1, team2)
+    def on_match_start(self,):
+        match = self.players_team.season_match_history[len(self.players_team.season_match_history) - 1]
         print("---------------")
-        print(f"Match between {team1.name} and {team2.name}.")
+        print(f"Match between {self.players_team.name} and {self.players_team.next_opponent.name}.")
         self.print_match_report_full(match)
         print('----------------')
-        self.main_menu(team1)
+        self.main_menu()
         return
+    
+    def print_main_menu_actions(self):        
+        print("Available actions:")
+        print("1. Change player roles")
+        print("2. Appoint IGL")
+        print("3. Proceed to next match")
     
     def print_player_profile(self, player):
         print(f"{player.username} | {player.real_name} | Age: {player.age} | Gender: {player.gender} | Attack skill: {player.attack} | Defense skill: {player.defense} | Leadership: {player.leadership}")

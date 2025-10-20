@@ -4,7 +4,7 @@ from team import Team
 def head_to_head_stats(team1: Team, team2: Team):
     # collect matches where the two faced each other
     head_to_head_matches = []
-    for match in team1.match_history:
+    for match in team1.season_match_history:
         if match.team1.name == team2.name or match.team2.name == team2.name:
             head_to_head_matches.append(match)
 

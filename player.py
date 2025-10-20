@@ -11,7 +11,7 @@ class Player:
         self.current_role = None
         self.team = None
         self.latest_match = None
-        self.match_history = []
+        self.season_match_history = []
 
     def get_role_name(self):
         return self.current_role.value if self.current_role else "Unassigned"

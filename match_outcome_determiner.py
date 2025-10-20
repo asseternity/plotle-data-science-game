@@ -13,15 +13,15 @@ class Match():
 
         # assign this match as latest
         self.team1.latest_match = self
-        self.team1.match_history.append(self)
+        self.team1.season_match_history.append(self)
         for player in self.team1.roster:
             player.latest_match = self
-            player.match_history.append(self)
+            player.season_match_history.append(self)
         self.team2.latest_match = self
-        self.team2.match_history.append(self)
+        self.team2.season_match_history.append(self)
         for player in self.team2.roster:
             player.latest_match = self
-            player.match_history.append(self)
+            player.season_match_history.append(self)
 
         # assign cheaters in a specific match
         all_players = self.team1report.player_stats + self.team2report.player_stats
@@ -69,8 +69,12 @@ class Match():
         KDA_difference = team1KDA - team2KDA
         if KDA_difference > 0:
             self.winner = team1
+            self.team1.season_wins += 1
+            self.team2.season_losses += 1
         else:
             self.winner = team2
+            self.team2.season_wins += 1
+            self.team1.season_losses += 1
 
         # determine match duration
         all_actions = self.team1report.total_kills() + self.team1report.total_assists() + self.team1report.total_deaths() + self.team2report.total_kills() + self.team2report.total_assists() + self.team2report.total_deaths()
@@ -119,3 +123,4 @@ class Match():
         initial_split.sort(reverse=True)
         for i in range(len(all_players)):
             all_players[i].neutrals_killed = round(total_neutrals_killed * (initial_split[i] / 100))
+
