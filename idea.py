@@ -55,6 +55,7 @@
 
 # 3) EXPAND and POLISH
 # [_] add heroes and show specific heroes on the match report and hero descriptions on the game lore and mechanics info cards
+# [_] pick and ban
 # [_] more timing and chance based mechanics for ultimate data science
 # [_] create a game mechanics / chances print with lore and explanations
 # [_] make sure the below ALL are stored in the engine parts, not the console/frontend parts!!!
