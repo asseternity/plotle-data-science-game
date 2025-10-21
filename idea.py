@@ -48,16 +48,19 @@
 # [v] create a gameplay loop (console-based) 
 # - separate engine with console logs!!!
 # - management gameplay, recruitment, switching players between roles, subs, igl appoint
-# [_] add season_ending and post season shuffle [WATCH THE SPLIT OF CONCERNS!!!]
+# [v] add season_ending and post season shuffle [WATCH THE SPLIT OF CONCERNS!!!]
+# [_] user data science to determine what most contributes to wins!
+# [_] change how wins and losses are calculated to be more strategic
+# [_] create a game mechanics / chances print with lore and explanations
+# [_] add heroes and show specific heroes on the match report and hero descriptions on the game lore and mechanics info cards
+# [_] add pick and ban [SPLIT OF CONCERNS!!!]
 # [_] cheater spotting with high score and timing / data science gameplay | based on data for rewards and penalties on timing and accuracy
 # [_] expand static data sciences
 # - Pandas layer – THE “ENGINE under the hood for the interactive portion. Each match can export a .csv or .pkl for reproducibility.
 
 # 3) EXPAND and POLISH
-# [_] add heroes and show specific heroes on the match report and hero descriptions on the game lore and mechanics info cards
 # [_] pick and ban
 # [_] more timing and chance based mechanics for ultimate data science
-# [_] create a game mechanics / chances print with lore and explanations
 # [_] make sure the below ALL are stored in the engine parts, not the console/frontend parts!!!
 # [v] add league standings
 # [_] add skill growth

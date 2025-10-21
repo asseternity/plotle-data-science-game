@@ -19,6 +19,8 @@ class League():
             return
         
         self.next_pairs = []
+        for team in self.teams:
+            team.next_opponent = None
         available_teams = self.teams.copy()
         random.shuffle(available_teams)
         
@@ -41,7 +43,15 @@ class League():
 
     def update_league_positions(self):
         self.teams.sort(key=lambda team: team.season_wins, reverse=True)
+        for i, team in enumerate(self.teams, start=1):
+            team.league_position = i
     
     def finish_league(self):
-        # remove match histories of teams, but not players
-        return
+        for team in self.teams:
+            team.past_league_results.append(team.league_position)
+            team.league_position = None
+            team.season_wins = 0
+            team.season_losses = 0
+            team.season_match_history = []
+            team.latest_match = None
+        self.league_over = False

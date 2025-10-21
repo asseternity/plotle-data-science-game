@@ -64,14 +64,16 @@ class ConsoleGameFlow():
 
         # Display league info
         self.league.determine_next_pairs()
-        # [_] handle league being over later
         self.league.update_league_positions()
         print("-------------")
         for i, team in enumerate(self.league.teams, start=1):
             print(f"{i}. {team.name} | {team.season_wins} - {team.season_losses}")
 
-        next_opponent = self.players_team.next_opponent.name
-        print(f"Next opponent: 🆚 {next_opponent}\n")
+        if self.players_team.next_opponent != None:
+            next_opponent = self.players_team.next_opponent.name
+            print(f"Next opponent: 🆚 {next_opponent}\n")
+        else:
+            print(f"Next: 🏆 season recap\n")
 
         while True:
             try:
@@ -79,9 +81,9 @@ class ConsoleGameFlow():
                 self.print_main_menu_actions()
                 choice = int(input("Enter command number: "))
                 if choice == 1:
-                    self.handle_change_roles(team)
+                    self.handle_change_roles()
                 elif choice == 2:
-                    self.handle_appoint_igl(team)
+                    self.handle_appoint_igl()
                 elif choice == 3:
                     # Check prerequisites before proceeding
                     unassigned_players = [p for p in team.roster if not hasattr(p, "current_role") or p.current_role is None]
@@ -91,8 +93,7 @@ class ConsoleGameFlow():
                             print(f" - {p.username} has no role assigned.")
                         continue  # Go back to menu loop
                     print(f"\n🏁 Starting match against {next_opponent}...\n")
-                    self.league.run_matches()
-                    self.on_match_start()
+                    self.handle_proceed()
                     break
                 else:
                     print("Invalid choice. Please enter 1–3.")
@@ -109,36 +110,36 @@ class ConsoleGameFlow():
             self.print_player_profile(new_player)
         return recruits
 
-    def handle_appoint_igl(self, team):
+    def handle_appoint_igl(self):
         print("\n--- Appoint IGL ---")
         print("Choose a player to become the In-Game Leader (IGL):")
-        for i, player in enumerate(team.roster, start=1):
+        for i, player in enumerate(self.players_team.roster, start=1):
             print(f"{i}. {player.username} (Leadership: {player.leadership})")
 
         try:
             choice = int(input("Enter the number of the player to appoint as IGL: "))
-            if 1 <= choice <= len(team.roster):
-                chosen_player = team.roster[choice - 1]
-                team.igl = chosen_player
-                print(f"🎖️ {chosen_player.username} has been appointed as the IGL of {team.name}!\n")
+            if 1 <= choice <= len(self.players_team.roster):
+                chosen_player = self.players_team.roster[choice - 1]
+                self.players_team.igl = chosen_player
+                print(f"🎖️ {chosen_player.username} has been appointed as the IGL of {self.players_team.name}!\n")
             else:
                 print("❌ Invalid selection. Please enter a valid player number.")
         except ValueError:
             print("❌ Please enter a number.")
-        return team
+        return self.players_team
 
-    def handle_change_roles(self, team):
+    def handle_change_roles(self):
         print("\n--- Change Player Roles ---")
         print("Current roster and roles:")
-        for i, player in enumerate(team.roster, start=1):
+        for i, player in enumerate(self.players_team.roster, start=1):
             role = getattr(player.current_role, "value", "Unassigned")
             print(f"{i}. {player.username} — Role: {role}")
 
         try:
             player_index = int(input("Enter the number of the player you want to assign/change role for: ")) - 1
-            if not (0 <= player_index < len(team.roster)):
+            if not (0 <= player_index < len(self.players_team.roster)):
                 print("❌ Invalid player number.")
-                return team
+                return self.players_team
 
             # Show available roles
             print("\nAvailable roles:")
@@ -148,9 +149,9 @@ class ConsoleGameFlow():
             role_choice = int(input("Enter the number of the role to assign: ")) - 1
             if not (0 <= role_choice < len(Role)):
                 print("❌ Invalid role selection.")
-                return team
+                return self.players_team
 
-            selected_player = team.roster[player_index]
+            selected_player = self.players_team.roster[player_index]
             chosen_role = list(Role)[role_choice]
 
             # Attempt to assign role
@@ -162,9 +163,16 @@ class ConsoleGameFlow():
 
         except ValueError:
             print("❌ Please enter valid numbers for player and role.")
-        return team
+        return self.players_team
+    
+    def handle_proceed(self):
+        if self.league.league_over == True:
+            self.season_recap()
+        else:
+            self.league.run_matches()
+            self.on_match_start()
 
-    def on_match_start(self,):
+    def on_match_start(self):
         match = self.players_team.season_match_history[len(self.players_team.season_match_history) - 1]
         print("---------------")
         print(f"Match between {self.players_team.name} and {self.players_team.next_opponent.name}.")
@@ -173,6 +181,53 @@ class ConsoleGameFlow():
         self.main_menu()
         return
     
+    def season_recap(self):
+        print("------------------")
+        print("Final League Standings")
+        for i, team in enumerate(self.league.teams, start=1):
+            print(f"{i}. {team.name} | {team.season_wins} - {team.season_losses}")
+        self.post_season_shuffle()
+    
+    def post_season_shuffle(self):
+        print("---------------")
+        print("This is a chance for you to do shuffles to your team.")
+        print("Do you want to do reshuffles to your roster? 1 - Yes, 2 - No")
+        user_wants_reshuffles = int(input("Please input response number: "))
+        if user_wants_reshuffles == 2:
+            return self.main_menu()
+        else:
+            recruits_pool = self.present_new_recruits()
+            player_satisfied = False    
+            while not player_satisfied:
+                try:
+                    print(f"Please enter the number of the recruit you'd like to add to the {self.players_team.name} roster.")
+                    user_input_new_recruit = int(input("Please input recruit number: "))
+                    if not (1 <= user_input_new_recruit <= len(recruits_pool)):
+                        print("❌ Invalid recruit number.")
+                        continue
+                    chosen_recruit = recruits_pool[user_input_new_recruit - 1]
+                    if chosen_recruit is None:
+                        print("❌ That recruit has already been chosen.")
+                        continue
+                    for i, player in enumerate(self.players_team.roster, start=1):
+                        print(f"{i}. {player.username} | {player.real_name} | Age: {player.age} | Gender: {player.gender} | Attack skill: {player.attack} | Defense skill: {player.defense} | Leadership: {player.leadership}")
+                    print("Please indicate who should be kicked from the roster")
+                    user_kicks = int(input("Please input player number: "))
+                    if 0 < user_kicks < 6:
+                        kicked_player = self.players_team.roster[user_kicks - 1]
+                        self.players_team.shuffle_roster(kicked_player, chosen_recruit) 
+                        print(f"You have added {chosen_recruit.username} and removed {kicked_player.username}.")
+                        recruits_pool[user_input_new_recruit - 1] = None
+                        print("Do you want to do more reshuffles? 1 - Yes, 2 - No")
+                        user_satisfaction = int(input("Enter response number: "))
+                        if (user_satisfaction) == 2:
+                            player_satisfied = True
+                    else:
+                        print("Invalid player number.")
+                except ValueError:
+                    print("❌ Please enter a valid number.")
+            return self.main_menu()
+
     def print_main_menu_actions(self):        
         print("Available actions:")
         print("1. Change player roles")
