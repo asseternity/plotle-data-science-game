@@ -49,8 +49,8 @@
 # - separate engine with console logs!!!
 # - management gameplay, recruitment, switching players between roles, subs, igl appoint
 # [v] add season_ending and post season shuffle [WATCH THE SPLIT OF CONCERNS!!!]
-# [_] user data science to determine what most contributes to wins!
-# [_] change how wins and losses are calculated to be more strategic
+# [v] user data science to determine what most contributes to wins!
+# [_] kill system revamp as per below
 # [_] create a game mechanics / chances print with lore and explanations
 # [_] add heroes and show specific heroes on the match report and hero descriptions on the game lore and mechanics info cards
 # [_] add pick and ban [SPLIT OF CONCERNS!!!]
@@ -84,3 +84,18 @@
 # 6) Third window - dots fighting match simulation
 # 7) Plotle mode - just detect cheaters based on a randomly generated match timing-wise. 
 # - Three difficulties - cheating numbers adjusted - total time / errors / accuracy counted for high score
+
+# ---------------
+# revamp of how kills will be calculated 
+
+# all 10 players are pooled all stats are 
+# 0-0-0 for everyone 
+# they are given likelihood / weight of how likely are they to get a kill: 
+# final_chance = attack skill + role_modifier + igl's_bonus - opposing_team_total_defense 
+# cap "kill chance" with a min value, like a 1%
+
+# then a random player is selected as "kill getter" 
+
+# then all opponent roster are pooled, 
+# sorted by defense, with lowest defense highest chance an opponent is picked, 
+# that player is the "death getter" no adjustment
